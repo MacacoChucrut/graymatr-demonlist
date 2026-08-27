@@ -1,7 +1,6 @@
 import { renderList } from "./pages/list.js";
 import { renderLevel } from "./pages/level.js";
 import { renderStatsViewer } from "./pages/stats_viewer.js";
-import { renderGuidelines } from "./pages/guidelines.js";
 
 const content = document.getElementById("content");
 
