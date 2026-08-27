@@ -1,0 +1,120 @@
+[data-theme="light"] {
+  color-scheme: light;
+  --background: #fff;
+  --text-primary: #333;
+  --text-secondary: #000;
+  --header: rgba(255, 255, 255, 0.9);
+  --header-border: #ccc;
+  --color-hover: #ddd;
+  --records-odd-bg: #d0e0f7;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #101017;
+  --text-primary: #ccc;
+  --text-secondary: #fff;
+  --header: rgba(16, 16, 23, 0.95);
+  --header-border: #333;
+  --color-hover: #202027;
+  --records-odd-bg: #102037;
+}
+
+/*-------------------------------------------------- MAIN --------------------------------------------------*/
+
+body {
+  font-family: sans-serif;
+  background: var(--background);
+}
+
+main {
+    padding-top: 6rem;
+}
+
+header {
+  background: var(--header);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 5rem;
+  border-bottom: var(--header-border) 1px solid;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+}
+
+header img {
+    height: 3rem;
+}
+
+header a {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+}
+
+.header-content {
+    display: flex;
+    margin: 0 auto;
+    width: 70%;
+    height: 100%;
+}
+
+.bg-images img {
+    position: fixed;
+}
+
+#bg-left {
+    top: 0;
+    left: 0;
+}
+
+#bg-right {
+    top: 0;
+    right: 0;
+}
+
+/*-------------------------------------------------- HEADER LOGO --------------------------------------------------*/
+
+.header-logo {
+    display: flex;
+    padding: 0 2rem;
+}
+
+.header-logo img {
+    border-radius: 8px;
+    margin-right: 1rem;
+}
+
+.header-logo a {
+    display: flex;
+    align-items: center;
+}
+
+/*-------------------------------------------------- HEADER BUTTONS --------------------------------------------------*/
+
+.header-buttons {
+    display: flex;
+    margin-left: auto;
+}
+
+.header-buttons a {
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.header-buttons a:hover {
+    background-color: var(--color-hover);
+    transition: 0.3s;
+}
+
+.header-buttons a:not(:hover) {
+    transition: 0.3s;
+}
+
+/*-------------------------------------------------- OTHER --------------------------------------------------*/
