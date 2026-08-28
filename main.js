@@ -8,7 +8,15 @@ function router() {
     const route = location.hash || "#list";
 
     if (route === "#list") {
-        renderList(content);
+        renderList(content, "main_list");
+    }
+    else if (route === "#secondary_list") {
+        renderList(content, "secondary_list");
+    }
+        
+    else if (route.startsWith("#list/")) {
+        const folderName = route.split("/")[1];
+        renderList(content, folderName);
     }
 
     else if (route.startsWith("#level/")) {
@@ -19,7 +27,7 @@ function router() {
         renderStatsViewer(content);
 
     } else {
-        renderList(content);
+        renderList(content, "main_list");
     }
 }
 
@@ -29,10 +37,7 @@ window.addEventListener("load", router);
 const STORAGE_KEY = "theme-preference";
 const root = document.documentElement;
 
-const themes = [
-    "light",
-    "dark"
-];
+const themes = ["light", "dark"];
 
 function getSystemTheme() {
     return window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -58,8 +63,7 @@ function applyTheme(theme, save = true) {
     if (save) {
         try {
             localStorage.setItem(STORAGE_KEY, theme);
-        } catch {
-        }
+        } catch {}
     }
 }
 
