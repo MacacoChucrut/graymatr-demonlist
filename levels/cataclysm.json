@@ -1,17 +1,9 @@
 {
-  "id": 3979721,
-  "name": "Cataclysm",
-  "creators": [
-    "Ggb0y"
-  ],
-  "verifier": "graymatr",
-  "verification": "https://youtu.be/qI5LvQ5Kk5Q",
-  "showcase": "",
-  "records": [
-  ],
-  "tags": [
-    "bad",
-    "horrible",
-    "die"
-  ]
+    "name": "Cataclysm",
+    "publisher": "Ggb0y",
+    "creator": "Ggb0y",
+    "verification": "https://youtu.be/qI5LvQ5Kk5Q",
+    "id": "3979721",
+    "records": [
+    ]
 }
