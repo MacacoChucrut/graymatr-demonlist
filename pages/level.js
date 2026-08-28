@@ -1,11 +1,10 @@
-import { getYouTubeEmbedUrl } from "../utils.js";
-import { getLevelPoints } from "../utils.js";
+import { getYouTubeEmbedUrl, getLevelPoints } from "../utils.js";
 
-export async function renderLevel(content, id) {
+export async function renderLevel(content, listName = "demonlist", id) {
     try {
         const [levelResponse, listResponse] = await Promise.all([
-            fetch(`./levels/${id}.json`),
-            fetch("./levels/_list.json")
+            fetch(`./_${listName}/${id}.json`),
+            fetch(`./_${listName}/_list.json`)
         ]);
 
         const level = await levelResponse.json();
@@ -40,11 +39,11 @@ export async function renderLevel(content, id) {
                     <div class="level-info">
                         <div class="level-id">
                             <h3>ID</h3>
-                            <p>${level.id}
+                            <p>${level.id}</p>
                         </div>
                         <div class="level-points">
                             <h3>Points</h3>
-                            <p>${levelPoints}
+                            <p>${levelPoints}</p>
                         </div>
                     </div>
                 </div>

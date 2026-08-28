@@ -1,12 +1,12 @@
 import { getLevelPoints } from "../utils.js";
 
-export async function renderStatsViewer(content) {
+export async function renderStatsViewer(content, listName = "demonlist") {
     try {
-        const listResponse = await fetch("./levels/_list.json");
+        const listResponse = await fetch(`./_${listName}/_list.json`);
         const levelNames = await listResponse.json();
 
         const responses = await Promise.all(
-            levelNames.map(name => fetch(`./levels/${name}.json`))
+            levelNames.map(name => fetch(`./_${listName}/${name}.json`))
         );
         const levelsData = await Promise.all(responses.map(r => r.json()));
 
@@ -98,7 +98,7 @@ export async function renderStatsViewer(content) {
 
                     <div class="stats-hardest">
                         <h3>Hardest</h3>
-                        <p class="hardest-title">${hardestDemon}</p>
+                        <p>${hardestDemon}</p>
                     </div>
                 </div>
 
@@ -140,6 +140,6 @@ export async function renderStatsViewer(content) {
 
     } catch (error) {
         console.error(error);
-        content.innerHTML = `<div class="stats-viewer-container"><p>Error loading stats.</p></div>`;
+        content.innerHTML = `<div class="stats-viewer-container"><p>Error loading ${listName}.</p></div>`;
     }
 }
