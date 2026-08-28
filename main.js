@@ -2,32 +2,47 @@ import { renderList } from "./pages/list.js";
 import { renderLevel } from "./pages/level.js";
 import { renderStatsViewer } from "./pages/stats_viewer.js";
 
+const statsViewerBtn = document.getElementById("nav-stats-viewer");
 const content = document.getElementById("content");
+const DEFAULT_LIST = "demonlist";
 
 function router() {
-    const route = location.hash || "#list";
+    const path = location.hash.replace(/^#\/?/, ""); 
+    const segments = path.split("/").filter(Boolean);
 
-    if (route === "#list") {
-        renderList(content, "main_list");
-    }
-    else if (route === "#secondary_list") {
-        renderList(content, "secondary_list");
-    }
-        
-    else if (route.startsWith("#list/")) {
-        const folderName = route.split("/")[1];
-        renderList(content, folderName);
+    if (segments.length === 0) {
+        location.hash = `#/${DEFAULT_LIST}`;
+        return;
     }
 
-    else if (route.startsWith("#level/")) {
-        const id = route.split("/")[1];
-        renderLevel(content, id);
+    const listName = segments[0];
+    const view = segments[1] || "list";
+    const param = segments[2];
 
-    } else if (route === "#stats_viewer") {
-        renderStatsViewer(content);
+    if (statsViewerBtn) {
+        statsViewerBtn.href = `#/${listName}/stats_viewer`;
+    }
 
-    } else {
-        renderList(content, "main_list");
+    switch (view) {
+        case "list":
+            renderList(content, listName);
+            break;
+
+        case "stats_viewer":
+            renderStatsViewer(content, listName);
+            break;
+
+        case "level":
+            if (param) {
+                renderLevel(content, listName, param);
+            } else {
+                renderList(content, listName);
+            }
+            break;
+
+        default:
+            renderList(content, listName);
+            break;
     }
 }
 
@@ -78,6 +93,6 @@ const savedTheme = getSavedTheme();
 
 applyTheme(savedTheme || getSystemTheme(), false);
 
-document.getElementById("theme-toggle").addEventListener("click", () => {
+document.getElementById("theme-toggle")?.addEventListener("click", () => {
     applyTheme(getNextTheme());
 });
