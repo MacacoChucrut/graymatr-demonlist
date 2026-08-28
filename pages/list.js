@@ -1,4 +1,4 @@
-import { getThumbnailFromId } from "../utils.js";
+import { getThumbnailFromId, getLevelPoints } from "../utils.js";
 
 export async function renderList(content, listName = "demonlist") {
     content.innerHTML = `
@@ -39,6 +39,7 @@ export async function renderList(content, listName = "demonlist") {
                 <div class="card-text">
                     <h3>#${index + 1} - ${item.name}</h3>
                     <h4>${item.publisher}</h4>
+                    <p>${levelPoints}</p>
                 </div>
             `;
 
